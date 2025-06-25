@@ -1,19 +1,17 @@
-import { useState } from 'react'
+import { useState } from "react"
 import './App.css'
-import SignUp from './components/SignUpForm'
+import SignUpForm from './components/SignUpForm'
 import Authenticate from './components/Authenticate'
 
 function App() {
   const [token, setToken] = useState(null)
-
+  const [username, setUsername] = useState(null)
 
   return (
-     <>
-        
-        <SignUp token={token} setToken={setToken}/>
-
-        <Authenticate token={token} setToken={setToken}/>
-
+    <>
+    {username && <h2>Welcome {username}!</h2>}
+      <SignUpForm setToken={setToken} />
+      <Authenticate token={token} setUsername={setUsername}/>
     </>
   )
 }

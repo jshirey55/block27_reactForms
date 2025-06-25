@@ -1,6 +1,6 @@
-import { use, useState } from "react";
+import { useState } from "react";
 
-function SignUp ({setToken}) {
+function SignUpForm ({setToken}) {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [error, setError] = useState(null)
@@ -21,11 +21,13 @@ function SignUp ({setToken}) {
                 }
             )
             const result = await res.json()
-            console.log(result)
             setToken(result.token)
-        }catch(error){
+        }   catch(error){
             console.log(error)
         }
+
+        setUsername('')
+        setPassword('')
     }
 
 
@@ -36,7 +38,6 @@ function SignUp ({setToken}) {
             <label>
                 Username:
                 <input
-                name="username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 />
@@ -44,17 +45,14 @@ function SignUp ({setToken}) {
             <label>
                 Password:
                 <input
-                name="password"
-                type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 />
             </label><br />
             <button>Submit</button>
-            {/* <p>{username}</p> */}
         </form>
         </>
     )
 }
 
-export default SignUp
+export default SignUpForm
